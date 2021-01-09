@@ -1,6 +1,7 @@
 #include <iostream>
 #include <task1.h>
 #include <string>
+#include <vector>
 using namespace std;
 
 Point2D Point2D::operator+(const Point2D& p) {
@@ -32,18 +33,26 @@ float Point2D::Distance(float px, float py) {
 //    return p;
 //}
 
+void testRendering(vector<Shape*>shapes) {
+    shapes[0]->render();
+    shapes[1]->render();
+    shapes[2]->render();
+}
 int main()
 {
     int arr[4] = { 3, 2, 3, 4 };
     Point2D p(1, 5);
     Shape s(p, arr);
     cout << s.getColors() << endl;
-    Triangle t(p, arr, 1, 2);
-    t.render();
-    Circle c(p, arr, 1);
-    c.render();
-    Rectangle r(p, arr, 1, 9);
-    r.render();
 
+    vector<Shape*>shapes;
+    Triangle t(p, arr, 1, 2);
+    Circle c(p, arr, 1);
+    Rectangle r(p, arr, 1, 9);
+
+    shapes.push_back(&t);
+    shapes.push_back(&c);
+    shapes.push_back(&r);
+    testRendering(shapes);
 }
 
