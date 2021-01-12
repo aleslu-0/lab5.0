@@ -26,12 +26,12 @@ float Point2D::Distance(float px, float py) {
     return dist;
 }
 
-//string Point2D::Location() {
-//    string sx = to_string(x);
-//    string sy = to_string(y);
-//    string p = "[" + sx + "," + sy + "]";
-//    return p;
-//}
+string Point2D::Location() {
+    string sx = to_string(x);
+    string sy = to_string(y);
+    string p = "[" + sx + "," + sy + "]";
+    return p;
+}
 
 void testRendering(vector<Shape*>shapes) {
     shapes[0]->render();

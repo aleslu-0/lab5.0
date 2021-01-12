@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <SDL.h>
+#include <math.h>
 using namespace std;
 
 class Point2D {
@@ -58,8 +60,16 @@ public:
 	int getY() {
 		return pos.y;
 	}
-	virtual void render() {
+	virtual void render(SDL_Renderer* r) {
 		cout << "Drawing a shape";
+		
+		SDL_SetRenderDrawColor(r, getRed(), getGreen(), getBlue(), getAlpha());
+		SDL_RenderDrawLine(r, 0, 0, 200, 200);
+		
+		SDL_RenderClear(r);
+		SDL_RenderPresent(r);
+
+		SDL_Delay(3000);
 	}
 	void setRed(int setRed) {
 		if (colors[0] < 0 || colors[0] > 255) {
@@ -114,9 +124,22 @@ public:
 	void setHeight(int nh) {
 		height = nh;
 	}
-	void render() {
-		cout << "Drawing a rectangle with the height of: " << width << "and height of: " << height << " at: " << getX() << ", " << getY() << endl;
+	virtual void render(SDL_Renderer* r) {
+		int x = getX();
+		int y = getY();
+		cout << "Drawing a rectangle with the height of: " << width << " and height of: " << height << " at: " << getX() << ", " << getY() << endl;
+		SDL_SetRenderDrawColor(r, 0, 0, 0, 0);
+		SDL_RenderClear(r);
+		SDL_SetRenderDrawColor(r, getRed(), getGreen(), getBlue(), getAlpha());
+		SDL_RenderDrawLine(r, x, y, x+width, y);	
+		SDL_RenderDrawLine(r, x+width, y, x+width, y-height);
+		SDL_RenderDrawLine(r, x+width, y-height, x, y-height);
+		SDL_RenderDrawLine(r, x, y-height, x, y);
+		
+		SDL_RenderPresent(r);
 
+		SDL_Delay(3000);
+		
 	}
 };
 class Triangle : public Shape {
@@ -139,8 +162,20 @@ public:
 	void setHeight(int nh) {
 		height = nh;
 	}
-	void render() {
-		cout << "Drawing a triangle with the base of: " << base << "and height of: " << height << " at: " << getX() << ", " << getY() << endl;
+	virtual void render(SDL_Renderer* r) {
+		int x = getX();
+		int y = getY();
+		cout << "Drawing a triangle with the base of: " << base << " and height of: " << height << " at: " << getX() << ", " << getY() << endl;
+		SDL_SetRenderDrawColor(r, 0, 0, 0, 0);
+		SDL_RenderClear(r);
+		SDL_SetRenderDrawColor(r, getRed(), getGreen(), getBlue(), getAlpha());
+		SDL_RenderDrawLine(r, x, y, x+base/2, y-height);
+		SDL_RenderDrawLine(r, x+base/2, y-height, x+base, y);
+		SDL_RenderDrawLine(r, x+base, y, x, y);
+
+		SDL_RenderPresent(r);
+
+		SDL_Delay(3000);
 	}
 };
 class Circle : public Shape {
@@ -156,7 +191,26 @@ public:
 	void setRadius(int nr) {
 		radius = nr;
 	}
-	void render() {
+	virtual void render(SDL_Renderer* r) {
 		cout << "Drawing a circle with a radius of: " << radius << " at: " << getX() << ", " << getY() << endl;
+		SDL_SetRenderDrawColor(r, 0, 0, 0, 0);
+		SDL_RenderClear(r);
+		SDL_SetRenderDrawColor(r, getRed(), getGreen(), getBlue(), getAlpha());
+		int pos_x = getX();
+		int pos_y = getY();
+		int theta = 0;
+		int h = 12;
+		int k = 10;
+		int step = 15;
+		while (theta <= 1080) {
+			int x = h + radius * cos(theta);
+			int y = k + radius * sin(theta);
+			SDL_RenderDrawLine(r, pos_x+x, pos_y+y, pos_x+x, pos_y+y);
+			theta += step;
+		}
+
+		SDL_RenderPresent(r);
+
+		SDL_Delay(3000);
 	}
 };

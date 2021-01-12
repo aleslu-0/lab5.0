@@ -21,7 +21,7 @@ public:
 	}
 	float Distance(float p1, float p2);
 
-	string Location();
+	//string Location();
 };
 
 class Shape {
@@ -116,7 +116,6 @@ public:
 	}
 	void render() {
 		cout << "Drawing a rectangle with the height of: " << width << "and height of: " << height << " at: " << getX() << ", " << getY() << endl;
-
 	}
 };
 class Triangle : public Shape {
@@ -159,4 +158,4 @@ public:
 	void render() {
 		cout << "Drawing a circle with a radius of: " << radius << " at: " << getX() << ", " << getY() << endl;
 	}
-};
+};#pragma once
