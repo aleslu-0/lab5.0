@@ -37,7 +37,6 @@ public:
 			colors[k] = arr[k];
 		}
 	}
-
 	string getColors() {
 		string s = to_string(colors[0]) + ", " + to_string(colors[1]) + ", " + to_string(colors[2]) + ", " + to_string(colors[3]);
 		return s;
@@ -60,17 +59,8 @@ public:
 	int getY() {
 		return pos.y;
 	}
-	virtual void render(SDL_Renderer* r) {
-		cout << "Drawing a shape";
-		
-		SDL_SetRenderDrawColor(r, getRed(), getGreen(), getBlue(), getAlpha());
-		SDL_RenderDrawLine(r, 0, 0, 200, 200);
-		
-		SDL_RenderClear(r);
-		SDL_RenderPresent(r);
+	virtual void render(SDL_Renderer* r) = 0;
 
-		SDL_Delay(3000);
-	}
 	void setRed(int setRed) {
 		if (colors[0] < 0 || colors[0] > 255) {
 			colors[0] = colors[0];
@@ -128,7 +118,7 @@ public:
 		int x = getX();
 		int y = getY();
 		cout << "Drawing a rectangle with the height of: " << width << " and height of: " << height << " at: " << getX() << ", " << getY() << endl;
-		SDL_SetRenderDrawColor(r, 0, 0, 0, 0);
+		SDL_SetRenderDrawColor(r, 255, 255, 255, 255);
 		SDL_RenderClear(r);
 		SDL_SetRenderDrawColor(r, getRed(), getGreen(), getBlue(), getAlpha());
 		SDL_RenderDrawLine(r, x, y, x+width, y);	
@@ -166,7 +156,7 @@ public:
 		int x = getX();
 		int y = getY();
 		cout << "Drawing a triangle with the base of: " << base << " and height of: " << height << " at: " << getX() << ", " << getY() << endl;
-		SDL_SetRenderDrawColor(r, 0, 0, 0, 0);
+		SDL_SetRenderDrawColor(r, 255, 255, 255, 255);
 		SDL_RenderClear(r);
 		SDL_SetRenderDrawColor(r, getRed(), getGreen(), getBlue(), getAlpha());
 		SDL_RenderDrawLine(r, x, y, x+base/2, y-height);
@@ -193,7 +183,7 @@ public:
 	}
 	virtual void render(SDL_Renderer* r) {
 		cout << "Drawing a circle with a radius of: " << radius << " at: " << getX() << ", " << getY() << endl;
-		SDL_SetRenderDrawColor(r, 0, 0, 0, 0);
+		SDL_SetRenderDrawColor(r, 255, 255, 255, 255);
 		SDL_RenderClear(r);
 		SDL_SetRenderDrawColor(r, getRed(), getGreen(), getBlue(), getAlpha());
 		int pos_x = getX();
@@ -202,7 +192,7 @@ public:
 		int h = 12;
 		int k = 10;
 		int step = 15;
-		while (theta <= 1080) {
+		while (theta <= 2160) {
 			int x = h + radius * cos(theta);
 			int y = k + radius * sin(theta);
 			SDL_RenderDrawLine(r, pos_x+x, pos_y+y, pos_x+x, pos_y+y);

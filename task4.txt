@@ -1,0 +1,18 @@
+	Reflection:
+-------------------------------------------------------
+"What did you learn? What did you know already?"
+-Inheritance, abstract methods, private fields, encapsulation.
+-Did not know much about the areas this lab covered prior.  
+
+-------------------------------------------------------
+ "What was difficult in the lab? How did you overcome it?"
+-Understanding inheritance and using SDL.  
+-The modules on canvas (previous lectures) and google.
+
+-------------------------------------------------------
+"How can the lab be improved?"
+-I have no suggestions.
+
+-------------------------------------------------------
+"Additionally, write an estimate how many hours you spent on this lab."
+-12 hours. 

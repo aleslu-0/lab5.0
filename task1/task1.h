@@ -58,9 +58,7 @@ public:
 	int getY() {
 		return pos.y;
 	}
-	virtual void render() {
-		cout << "Drawing a shape";
-	}
+	virtual void render() = 0;
 	void setRed(int setRed) {
 		if (colors[0] < 0 || colors[0] > 255) {
 			colors[0] = colors[0];
@@ -116,7 +114,6 @@ public:
 	}
 	void render() {
 		cout << "Drawing a rectangle with the height of: " << width << "and height of: " << height << " at: " << getX() << ", " << getY() << endl;
-
 	}
 };
 class Triangle : public Shape {

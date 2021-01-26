@@ -42,8 +42,6 @@ int main()
 {
     int arr[4] = { 3, 2, 3, 4 };
     Point2D p(1, 5);
-    Shape s(p, arr);
-    cout << s.getColors() << endl;
 
     vector<Shape*>shapes;
     Triangle t(p, arr, 1, 2);
